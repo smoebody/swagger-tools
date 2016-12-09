@@ -1,16 +1,14 @@
 version: '2'
 services:
   node:
-    image: docker.io/smoebody/dev-nodejs:6
+    image: node:alpine
+    user: ${USER_ID}
+    working_dir: /usr/src/app
     volumes:
-      - ./:/app:z
-      - npm-cache:/home/dev/.npm:z
+      - ./:/usr/src/app:z
     ports:
       - 127.0.0.1:5858:5858
     environment:
       - NODE_ENV=development
-    command: 
+    command:
       - npm test
-
-volumes:
-  npm-cache: {}
